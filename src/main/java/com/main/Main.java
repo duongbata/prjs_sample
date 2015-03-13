@@ -13,6 +13,6 @@ public class Main {
 		ApplicationContext context = new ClassPathXmlApplicationContext("context/application_context.xml");
 		QuestionDao questDao = context.getBean(QuestionDao.class);
 		List<QuestionBean> listQuest = questDao.selectQuestion();
-		System.out.println(listQuest.size());
+		
 	}
 }
