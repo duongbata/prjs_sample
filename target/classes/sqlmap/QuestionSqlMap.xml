@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.QuestionDao">
+	<resultMap type="questionBean" id="questionObject">
+		<result property="questionId" column="question_id"/>
+		<result property="questionContent" column="question_content"/>
+		<result property="caseA" column="caseA"/>
+		<result property="caseB" column="caseB"/>
+		<result property="caseC" column="caseC"/>
+		<result property="caseD" column="caseD"/>
+		<result property="topicId" column="topic_id"/>
+		<result property="trueCaseFlag" column="true_case"/>
+		<result property="usedFlag" column="used_flag"/>
+	</resultMap>
+	<select id="selectQuestion" resultMap="questionObject">
+		SELECT
+			question_id,
+			question_content,
+			caseA,
+			caseB,
+			caseC,
+			caseD,
+			true_case,
+			topic_id
+		FROM
+			question_plus
+		where topic_id = 66
+	</select>
+</mapper>
