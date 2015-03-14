@@ -5,9 +5,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
 	<typeAliases>
 		<typeAlias alias="questionBean" type="com.bean.QuestionBean"/>
+		<typeAlias alias="topicBean" type="com.bean.TopicBean"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="sqlmap/QuestionSqlMap.xml" />
+		<mapper resource="sqlmap/TopicSqlMap.xml" />
 	</mappers>
 </configuration>

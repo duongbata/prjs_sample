@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.TopicDao">
+	<resultMap type="topicBean" id="topicObject">
+		<result property="topicId" column="topic_id"/>
+		<result property="parentTopicId" column="topic_parent"/>
+		<result property="topicName" column="topic_name"/>
+		<result property="description" column="description"/>
+		<result property="newFlag" column="new_flag"/>
+	</resultMap>
+	<select id="listTopicParent" resultMap="topicObject">
+		select topic_id,topic_name from topic_master
+		where used_flag = '1'
+		and topic_parent is null
+	</select>
+	<select id="listChildTopicByParent" parameterType="string" resultMap="topicObject">
+		select topic_id,topic_name from topic_master
+		where used_flag = '1'
+		and topic_parent = #{parentTopicId}
+	</select>
+</mapper>

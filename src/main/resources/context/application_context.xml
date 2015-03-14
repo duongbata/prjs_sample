@@ -11,28 +11,50 @@
 		<property name="locations">
 			<list>
 				<value>classpath:plus_info.properties</value>
+				<value>classpath:fake_info.properties</value>
 			</list>
 		</property>
 	</bean>
 	<context:component-scan base-package="com.dao"/>
+	<context:component-scan base-package="com.logic"/>
 	<!-- Database -->
-	<bean id="appDataSource"
+<!-- 	1.Plus_quest -->
+	<bean id="plusDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${plusDriver}" />
 		<property name="url" value="${plusUrl}" />
 		<property name="username" value="${plusUserName}" />
 		<property name="password" value="${plusPassword}" />
 	</bean>
-	<bean id="appsTransactionManager"
+	<bean id="plusTransactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="appDataSource" />
+		<property name="dataSource" ref="plusDataSource" />
 	</bean>
-	<bean id="appSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="appDataSource" />
+	<bean id="plusSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="plusDataSource" />
 		<property name="configLocation" value="classpath:/sqlMap/SqlMapConfig.xml" />
 	</bean>
-	<bean id="appSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="appSessionFactory" />
+	<bean id="plusSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="plusSessionFactory" />
 	</bean>
-
+<!-- 	2.fake_quest -->
+	<bean id="fakeDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${fakeDriver}" />
+		<property name="url" value="${fakeUrl}" />
+		<property name="username" value="${fakeUserName}" />
+		<property name="password" value="${fakePassword}" />
+	</bean>
+	<bean id="fakeTransactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="fakeDataSource" />
+	</bean>
+	<bean id="fakeSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="fakeDataSource" />
+		<property name="configLocation" value="classpath:/sqlMap/SqlMapConfig.xml" />
+	</bean>
+	<bean id="fakeSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="fakeSessionFactory" />
+	</bean>
+	
 </beans>

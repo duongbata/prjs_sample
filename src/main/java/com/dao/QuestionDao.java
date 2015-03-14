@@ -12,18 +12,28 @@ import com.bean.QuestionBean;
 public class QuestionDao {
 	private String namespace;
 	
-	private static final String SELECT_QUEST = "selectQuestion";
+	private static final String SELECT_QUEST_FROM_PLUS_BY_TOPIC = "selectQuestionFromPlusByTopic";
+	
+	private static final String INSERT_QUEST_TO_FAKE = "insertQuestToFake";
 	
 	@Autowired
-	private SqlSessionTemplate appSqlSession; 
+	private SqlSessionTemplate plusSqlSession; 
+	
+	@Autowired
+	private SqlSessionTemplate fakeSqlSession;
 	
 	public QuestionDao() {
 		setNamespace("com.dao.QuestionDao");
 	}
 	
-	public List<QuestionBean> selectQuestion() {
-		String query = namespace + "." +SELECT_QUEST;
-		return appSqlSession.selectList(query);
+	public List<QuestionBean> selectQuestion(String topicId) {
+		String query = namespace + "." +SELECT_QUEST_FROM_PLUS_BY_TOPIC;
+		return plusSqlSession.selectList(query,topicId);
+	}
+	
+	public void insertQuestToFake(QuestionBean quest) {
+		String query = namespace + "." + INSERT_QUEST_TO_FAKE;
+		fakeSqlSession.insert(query, quest);
 	}
 
 	

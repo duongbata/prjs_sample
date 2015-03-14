@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="trueCaseFlag" column="true_case"/>
 		<result property="usedFlag" column="used_flag"/>
 	</resultMap>
-	<select id="selectQuestion" resultMap="questionObject">
+	<select id="selectQuestionFromPlusByTopic" parameterType="string" resultMap="questionObject">
 		SELECT
 			question_id,
 			question_content,
@@ -26,6 +26,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			topic_id
 		FROM
 			question_plus
-		where topic_id = 66
+		where used_flag = '1'
+		AND topic_id = #{topicId}
 	</select>
+	<insert id="insertQuestToFake" parameterType="questionBean">
+		INSERT INTO question_master (
+			question_content,
+			caseA,
+			caseB,
+			caseC,
+			caseD,
+			true_case,
+			topic_id,
+			used_flag
+		)
+		VALUES
+			(
+				#{questionContent}
+				, #{caseA}
+				, #{caseB}
+				, #{caseC}
+				, #{caseD}
+				, #{trueCaseFlag}
+				, #{topicId}
+				, '1'
+			)
+	</insert>
 </mapper>
