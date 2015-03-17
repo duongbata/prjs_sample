@@ -22,12 +22,13 @@ public class GenericLogic {
 	public void insertQuestPlusToFake(){
 		List<TopicBean> listParent = topicDao.listTopicParent();
 		if (listParent != null && listParent.size() > 0) {
+			int i = 1;
 			for (TopicBean parent : listParent) {
 				List<TopicBean> listChild = topicDao.listChildTopicByParentId(String.valueOf(parent.getTopicId()));
 				for (TopicBean child : listChild) {
 					List<QuestionBean> listQuest = questionDao.selectQuestion(String.valueOf(child.getTopicId()));
 					for (QuestionBean quest : listQuest) {
-						if (parent.getTopicId() == Constant.PLUS_AM_NHAC) {
+						/*if (parent.getTopicId() == Constant.PLUS_AM_NHAC) {
 							quest.setTopicId(Constant.FAKE_AM_NHAC);
 							questionDao.insertQuestToFake(quest);
 						} else if (parent.getTopicId() == Constant.PLUS_AM_THUC) {
@@ -51,8 +52,9 @@ public class GenericLogic {
 						} else if (parent.getTopicId() == Constant.PLUS_VH_XH) {
 							quest.setTopicId(Constant.FAKE_VH_XH);
 							questionDao.insertQuestToFake(quest);
-						}
-						
+						}*/
+						System.out.println(i);
+						i++;
 					}
 				}
 			}

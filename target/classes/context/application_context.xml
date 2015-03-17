@@ -32,7 +32,7 @@
 	</bean>
 	<bean id="plusSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="plusDataSource" />
-		<property name="configLocation" value="classpath:/sqlMap/SqlMapConfig.xml" />
+		<property name="configLocation" value="classpath:/sqlmap/SqlMapConfig.xml" />
 	</bean>
 	<bean id="plusSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="plusSessionFactory" />
@@ -51,7 +51,7 @@
 	</bean>
 	<bean id="fakeSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="fakeDataSource" />
-		<property name="configLocation" value="classpath:/sqlMap/SqlMapConfig.xml" />
+		<property name="configLocation" value="classpath:/sqlmap/SqlMapConfig.xml" />
 	</bean>
 	<bean id="fakeSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="fakeSessionFactory" />
