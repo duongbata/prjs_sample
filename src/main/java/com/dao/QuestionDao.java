@@ -18,6 +18,10 @@ public class QuestionDao {
 	
 	private static final String SELECT_QUEST_FROM_FAKE_BY_TOPIC = "selectQuestFromFakeByTopicId";
 	
+	public static final String SELECT_WRONGABLE_QUEST = "selectWrongableQuest";
+	
+	public static final String UPDATE_WRONG_QUEST = "updateWrongQuest";
+	
 	@Autowired
 	private SqlSessionTemplate plusSqlSession; 
 	
@@ -41,6 +45,16 @@ public class QuestionDao {
 	public List<QuestionBean> selectQuestFromFakeByTopicId(String topicId) {
 		String query = namespace + "." + SELECT_QUEST_FROM_FAKE_BY_TOPIC;
 		return fakeSqlSession.selectList(query, topicId);
+	}
+	
+	public List<QuestionBean> selectWrongableQuest(){
+		String query = namespace + "." + SELECT_WRONGABLE_QUEST;
+		return fakeSqlSession.selectList(query);
+	}
+	
+	public void updateWrongQuest(QuestionBean quest) {
+		String query = namespace + "." + UPDATE_WRONG_QUEST;
+		fakeSqlSession.update(query, quest);
 	}
 
 	

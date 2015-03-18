@@ -120,4 +120,39 @@ public class GenericLogic {
 		int newTopicId = Constant.FAKE_VH_XH;
 		insertQuestFromOldToNewTopic(listTopicId, newTopicId);
 	}
+	
+	public void processWrongableQuest(){
+		List<QuestionBean> listQuest = questionDao.selectWrongableQuest();
+		for (QuestionBean quest : listQuest) {
+			boolean isWrong = false;
+			
+			String[] arrCaseA = quest.getCaseA().split("\\.");
+			if (arrCaseA.length > 1 && "0".equals(arrCaseA[1])) {
+				isWrong = true;
+				quest.setCaseA(arrCaseA[0]);
+			}
+			
+			String[] arrCaseB = quest.getCaseB().split("\\.");
+			if (arrCaseB.length > 1 && "0".equals(arrCaseB[1])) {
+				isWrong = true;
+				quest.setCaseB(arrCaseB[0]);
+			}
+			
+			String[] arrCaseC = quest.getCaseC().split("\\.");
+			if (arrCaseC.length > 1 && "0".equals(arrCaseC[1])) {
+				isWrong = true;
+				quest.setCaseC(arrCaseC[0]);
+			}
+			
+			String[] arrCaseD = quest.getCaseD().split("\\.");
+			if (arrCaseD.length > 1 && "0".equals(arrCaseD[1])) {
+				isWrong = true;
+				quest.setCaseD(arrCaseD[0]);
+			}
+			if (isWrong) {
+				System.out.println(quest.getQuestionId());
+				questionDao.updateWrongQuest(quest);
+			}
+		}
+	}
 }

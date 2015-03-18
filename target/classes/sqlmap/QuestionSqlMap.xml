@@ -67,4 +67,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where used_flag = '1'
 		AND topic_id = #{topicId}
 	</select>
+	<select id="selectWrongableQuest" resultMap="questionObject">
+		select 
+			question_id,
+			question_content,
+			caseA,
+			caseB,
+			caseC,
+			caseD,
+			true_case,
+			topic_id
+		from question_master
+		where used_flag = '1'
+		and (caseA like '%.0%'
+		or caseB like '%.0%'
+		or caseC like '%.0%'
+		or caseD like '%.0%')
+	</select>
+	<update id="updateWrongQuest" parameterType="questionBean">
+		update question_master
+		set caseA = #{caseA}
+		, caseB = #{caseB}
+		, caseC = #{caseC}
+		, caseD = #{caseD}
+		where question_id = ${questionId}
+	</update>
 </mapper>

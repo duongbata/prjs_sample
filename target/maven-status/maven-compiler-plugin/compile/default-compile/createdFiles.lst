@@ -2,6 +2,7 @@ com\main\MainAddQuest.class
 com\dao\TopicDao.class
 com\bean\TopicBean.class
 com\dao\QuestionDao.class
+com\main\MainEditNumber.class
 com\bean\QuestionBean.class
 com\main\Main.class
 com\logic\GenericLogic.class
