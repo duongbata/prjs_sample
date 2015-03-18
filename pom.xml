@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.sample.main</groupId>
   <artifactId>prjs_sample</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>Sample</name>
    <build>
 		<sourceDirectory>src</sourceDirectory>
@@ -27,7 +27,7 @@
 					<!-- MainClass in mainfest make a executable jar -->
 					<archive>
 					  <manifest>
-						<mainClass>com.main.Main</mainClass>
+						<mainClass>com.main.MainAddQuest</mainClass>
 					  </manifest>
 					</archive>
  

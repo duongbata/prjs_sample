@@ -1,3 +1,4 @@
+com\main\MainAddQuest.class
 com\dao\TopicDao.class
 com\bean\TopicBean.class
 com\dao\QuestionDao.class

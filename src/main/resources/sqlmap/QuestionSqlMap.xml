@@ -52,4 +52,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				, '1'
 			)
 	</insert>
+	<select id="selectQuestFromFakeByTopicId" parameterType="string" resultMap="questionObject">
+		SELECT
+			question_id,
+			question_content,
+			caseA,
+			caseB,
+			caseC,
+			caseD,
+			true_case,
+			topic_id
+		FROM
+			question_master
+		where used_flag = '1'
+		AND topic_id = #{topicId}
+	</select>
 </mapper>

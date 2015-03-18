@@ -16,6 +16,8 @@ public class QuestionDao {
 	
 	private static final String INSERT_QUEST_TO_FAKE = "insertQuestToFake";
 	
+	private static final String SELECT_QUEST_FROM_FAKE_BY_TOPIC = "selectQuestFromFakeByTopicId";
+	
 	@Autowired
 	private SqlSessionTemplate plusSqlSession; 
 	
@@ -34,6 +36,11 @@ public class QuestionDao {
 	public void insertQuestToFake(QuestionBean quest) {
 		String query = namespace + "." + INSERT_QUEST_TO_FAKE;
 		fakeSqlSession.insert(query, quest);
+	}
+	
+	public List<QuestionBean> selectQuestFromFakeByTopicId(String topicId) {
+		String query = namespace + "." + SELECT_QUEST_FROM_FAKE_BY_TOPIC;
+		return fakeSqlSession.selectList(query, topicId);
 	}
 
 	
