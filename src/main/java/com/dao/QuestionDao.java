@@ -1,6 +1,7 @@
 package com.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,12 @@ public class QuestionDao {
 	public static final String UPDATE_WRONG_QUEST = "updateWrongQuest";
 	
 	public static final String  SELECT_QUEST_FROM_ULTRA_BY_TOPIC_ID ="selectQuestFromUltraByTopicId";
+	
+	public static final String SELECT_ALL_QUEST_FROM_MASTER = "selectAllQuestionFromMaster";
+	
+	public static final String INSERT_TO_QUEST_NEW = "insertToQuestionNew";
+	
+	public static final String INSERT_TO_QUEST_TOPIC_MASTER = "insertToQuestionTopicMaster";
 	
 	@Autowired
 	private SqlSessionTemplate plusSqlSession; 
@@ -65,6 +72,32 @@ public class QuestionDao {
 	public List<QuestionBean> selectQuestFromUltraByTopicId(String topicId) {
 		String query  = namespace + "." +SELECT_QUEST_FROM_ULTRA_BY_TOPIC_ID;
 		return ultraSqlSession.selectList(query, topicId);
+	}
+	
+//	quest new 
+	public List<QuestionBean> selectAllQuestionFromMaster() {
+		String query = namespace + "." + SELECT_ALL_QUEST_FROM_MASTER;
+		return fakeSqlSession.selectList(query);
+	} 
+	
+	public boolean insertToQuestionNew(QuestionBean question) {
+		String query = namespace + "." + INSERT_TO_QUEST_NEW;
+		int result = fakeSqlSession.insert(query, question);
+		if (result == -1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public boolean insertToQuestionTopicMaster(Map<String, Object> map) {
+		String query = namespace + "." + INSERT_TO_QUEST_TOPIC_MASTER;
+		int result = fakeSqlSession.insert(query, map);
+		if (result == -1) {
+			return false;
+		} else {
+			return true;
+		} 
 	}
 	
 	private void setNamespace(String namespace) {

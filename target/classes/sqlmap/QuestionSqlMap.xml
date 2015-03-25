@@ -123,5 +123,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM question_master
 		WHERE used_flag = '1'
 	</select>
-	
+	<insert id="insertToQuestionNew" parameterType="questionBean">
+		insert into question_master_new(
+			question_id
+			, question_content
+			, caseA
+			, caseB
+			, caseC
+			, caseD
+			, true_case
+		) values (
+			#{questionId}
+			, #{questionContent}
+			, #{caseA}
+			, #{caseB}
+			, #{caseC}
+			, #{caseD}
+			, #{trueCaseFlag}
+		)
+	</insert>
+	<insert id="insertToQuestionTopicMaster" parameterType = "java.util.Map">
+		insert into question_topic_master(
+			id
+			, question_id
+			, topic_id
+			, used_flag
+		) values (
+			${id}
+			, ${question_id}
+			, ${topic_id}
+			, '1'
+		)
+	</insert>
 </mapper>

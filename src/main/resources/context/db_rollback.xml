@@ -22,7 +22,7 @@
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:pointcut expression="execution(* com.main.*Logic.*(..))" id="operationPoint"/>
+		<aop:pointcut expression="execution(* com.logic.*Logic.*(..))" id="operationPoint"/>
 		<aop:advisor advice-ref="adviceFakeQuest" pointcut-ref="operationPoint"/>
 	</aop:config>	   
 </beans>
