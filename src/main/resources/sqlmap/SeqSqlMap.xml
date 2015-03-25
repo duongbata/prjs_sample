@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.SeqDao">
+	<resultMap type="seqBean" id="seqObject">
+		<result property="seqNo" column="seq_no" />
+	</resultMap>
+	<select id="getSeqNo" parameterType="java.util.Map" resultMap="seqObject">
+		SELECT MAX(${column_name}) AS seq_no
+		FROM ${table_name}
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="params != null">
+				<foreach collection="params" index="col" item="val">
+					AND ${col} = ${val}
+				</foreach>
+			</if>
+		</trim>
+	</select>
+</mapper>

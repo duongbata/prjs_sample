@@ -1,4 +1,6 @@
+com\main\MainAddQuestFromUltra.class
 com\main\MainAddQuest.class
+com\bean\ConstantMobi.class
 com\dao\TopicDao.class
 com\bean\TopicBean.class
 com\dao\QuestionDao.class

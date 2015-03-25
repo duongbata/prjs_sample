@@ -12,6 +12,7 @@
 			<list>
 				<value>classpath:plus_info.properties</value>
 				<value>classpath:fake_info.properties</value>
+				<value>classpath:ultra_info.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -57,4 +58,25 @@
 		<constructor-arg index="0" ref="fakeSessionFactory" />
 	</bean>
 	
+<!-- 	3.ultra_quest -->
+	<bean id="ultraDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${ultraDriver}" />
+		<property name="url" value="${ultraUrl}" />
+		<property name="username" value="${ultraUserName}" />
+		<property name="password" value="${ultraPassword}" />
+	</bean>
+	<bean id="ultraTransactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ultraDataSource" />
+	</bean>
+	<bean id="ultraSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ultraDataSource" />
+		<property name="configLocation" value="classpath:/sqlmap/SqlMapConfig.xml" />
+	</bean>
+	<bean id="ultraSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="ultraSessionFactory" />
+	</bean>
+<!-- 	Import -->
+	<import resource="/db_rollback.xml"/>
 </beans>

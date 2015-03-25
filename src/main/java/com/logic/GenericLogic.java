@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bean.Constant;
+import com.bean.ConstantMobi;
 import com.bean.QuestionBean;
 import com.bean.TopicBean;
 import com.dao.QuestionDao;
@@ -155,4 +156,27 @@ public class GenericLogic {
 			}
 		}
 	}
+	
+	//Ultra
+	public void insertQuestFromUltraToFake(int fromTopicUltra, int toTopicFake) {
+		List<QuestionBean> listQuestFromUltra = questionDao.selectQuestFromUltraByTopicId(String.valueOf(fromTopicUltra));
+		System.out.println(String.valueOf(toTopicFake));
+		for (QuestionBean quest : listQuestFromUltra) {
+			quest.setTopicId(toTopicFake);
+			questionDao.insertQuestToFake(quest);
+		}
+	}
+	
+	public void insertAllQuestUltraToFake() {
+		insertQuestFromUltraToFake(ConstantMobi.ULTRA_DIA_LY, ConstantMobi.FAKE_DIA_LY);
+		insertQuestFromUltraToFake(ConstantMobi.ULTRA_HOA_HOC, ConstantMobi.FAKE_HOA_HOC);
+		insertQuestFromUltraToFake(ConstantMobi.ULTRA_LICH_SU, ConstantMobi.FAKE_LICH_SU);
+		insertQuestFromUltraToFake(ConstantMobi.ULTRA_NGU_VAN, ConstantMobi.FAKE_NGU_VAN);
+		insertQuestFromUltraToFake(ConstantMobi.ULTRA_SINH_HOC, ConstantMobi.FAKE_SINH_HOC);
+		insertQuestFromUltraToFake(ConstantMobi.ULTRA_TIENG_ANH, ConstantMobi.FAKE_TIENG_ANH);
+		insertQuestFromUltraToFake(ConstantMobi.ULTRA_TOAN_HOC, ConstantMobi.FAKE_TOAN_HOC);
+		insertQuestFromUltraToFake(ConstantMobi.ULTRA_VAT_LY, ConstantMobi.FAKE_VAT_LY);
+	}
+	
+	
 }

@@ -92,4 +92,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		, caseD = #{caseD}
 		where question_id = ${questionId}
 	</update>
+<!-- 	Ultra -->
+	<select id="selectQuestFromUltraByTopicId" parameterType="string" resultMap="questionObject">
+		SELECT
+			question_id,
+			question_content,
+			caseA,
+			caseB,
+			caseC,
+			caseD,
+			true_case,
+			topic_id
+		FROM
+			question_plus
+		WHERE
+			used_flag = '1'
+		AND topic_id = #{topicId}
+	</select>
+<!-- 	master to new -->
+	<select id="selectAllQuestionFromMaster" resultMap="questionObject">
+		SELECT
+			question_id,
+			question_content,
+			caseA,
+			caseB,
+			caseC,
+			caseD,
+			true_case,
+			topic_id
+		FROM question_master
+		WHERE used_flag = '1'
+	</select>
+	
 </mapper>

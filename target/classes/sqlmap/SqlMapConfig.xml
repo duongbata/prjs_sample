@@ -6,10 +6,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 		<typeAlias alias="questionBean" type="com.bean.QuestionBean"/>
 		<typeAlias alias="topicBean" type="com.bean.TopicBean"/>
+		<typeAlias alias="seqBean" type="com.bean.SeqBean"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="sqlmap/QuestionSqlMap.xml" />
-		<mapper resource="sqlmap/TopicSqlMap.xml" />
+		<mapper resource="sqlmap/TopicSqlMap.xml"/>
+		<mapper resource="sqlmap/SeqSqlMap.xml"/>
 	</mappers>
 </configuration>

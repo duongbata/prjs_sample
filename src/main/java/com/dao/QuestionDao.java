@@ -22,11 +22,16 @@ public class QuestionDao {
 	
 	public static final String UPDATE_WRONG_QUEST = "updateWrongQuest";
 	
+	public static final String  SELECT_QUEST_FROM_ULTRA_BY_TOPIC_ID ="selectQuestFromUltraByTopicId";
+	
 	@Autowired
 	private SqlSessionTemplate plusSqlSession; 
 	
 	@Autowired
 	private SqlSessionTemplate fakeSqlSession;
+	
+	@Autowired
+	private SqlSessionTemplate ultraSqlSession;
 	
 	public QuestionDao() {
 		setNamespace("com.dao.QuestionDao");
@@ -56,7 +61,11 @@ public class QuestionDao {
 		String query = namespace + "." + UPDATE_WRONG_QUEST;
 		fakeSqlSession.update(query, quest);
 	}
-
+	
+	public List<QuestionBean> selectQuestFromUltraByTopicId(String topicId) {
+		String query  = namespace + "." +SELECT_QUEST_FROM_ULTRA_BY_TOPIC_ID;
+		return ultraSqlSession.selectList(query, topicId);
+	}
 	
 	private void setNamespace(String namespace) {
 		this.namespace = namespace;
