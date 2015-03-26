@@ -25,11 +25,13 @@ public class QuestionDao {
 	
 	public static final String  SELECT_QUEST_FROM_ULTRA_BY_TOPIC_ID ="selectQuestFromUltraByTopicId";
 	
-	public static final String SELECT_ALL_QUEST_FROM_MASTER = "selectAllQuestionFromMaster";
+	public static final String SELECT_ALL_QUEST_FROM_MASTER_EXCEPT_ALTP = "selectAllQuestionFromMasterExceptAltp";
 	
 	public static final String INSERT_TO_QUEST_NEW = "insertToQuestionNew";
 	
 	public static final String INSERT_TO_QUEST_TOPIC_MASTER = "insertToQuestionTopicMaster";
+	
+	public static final String SELECT_QUEST_NEW_BY_TOPIC_ID = "selectQuestNewByTopicId";
 	
 	@Autowired
 	private SqlSessionTemplate plusSqlSession; 
@@ -75,8 +77,8 @@ public class QuestionDao {
 	}
 	
 //	quest new 
-	public List<QuestionBean> selectAllQuestionFromMaster() {
-		String query = namespace + "." + SELECT_ALL_QUEST_FROM_MASTER;
+	public List<QuestionBean> selectAllQuestionFromMasterExceptAltp() {
+		String query = namespace + "." + SELECT_ALL_QUEST_FROM_MASTER_EXCEPT_ALTP;
 		return fakeSqlSession.selectList(query);
 	} 
 	
@@ -98,6 +100,11 @@ public class QuestionDao {
 		} else {
 			return true;
 		} 
+	}
+	
+	public List<QuestionBean> selectQuestNewByTopicId(String topicId) {
+		String query = namespace + "." + SELECT_QUEST_NEW_BY_TOPIC_ID;
+		return fakeSqlSession.selectList(query, topicId);
 	}
 	
 	private void setNamespace(String namespace) {

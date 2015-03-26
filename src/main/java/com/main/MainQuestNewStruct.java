@@ -1,6 +1,7 @@
 package com.main;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.context.ApplicationContext;
@@ -17,7 +18,9 @@ public class MainQuestNewStruct {
 		ApplicationContext context = new ClassPathXmlApplicationContext("context/application_context.xml");
 		QuestionNewLogic questNewLogic = context.getBean(QuestionNewLogic.class);
 		try {
+			//insert quest
 			questNewLogic.insertToQuestionNew();
+			
 		} catch (Throwable e) {
 			System.out.println(e.getMessage());
 		}

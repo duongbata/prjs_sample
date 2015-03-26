@@ -110,7 +110,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND topic_id = #{topicId}
 	</select>
 <!-- 	master to new -->
-	<select id="selectAllQuestionFromMaster" resultMap="questionObject">
+	<select id="selectAllQuestionFromMasterExceptAltp" resultMap="questionObject">
 		SELECT
 			question_id,
 			question_content,
@@ -122,6 +122,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			topic_id
 		FROM question_master
 		WHERE used_flag = '1'
+		AND topic_id &lt;&gt; 101
 	</select>
 	<insert id="insertToQuestionNew" parameterType="questionBean">
 		insert into question_master_new(
@@ -155,4 +156,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			, '1'
 		)
 	</insert>
+	<select id="selectQuestNewByTopicId" parameterType="string" resultMap="questionObject">
+		select qmn.question_id,
+			tm.topic_id
+		from question_master_new as qmn
+		INNER JOIN question_topic_master as qtm
+		on qtm.used_flag = '1'
+		and qmn.question_id = qtm.question_id
+		INNER JOIN topic_master as tm
+		on qtm.topic_id = tm.topic_id
+		where tm.topic_id = #{topicId}
+	</select>
 </mapper>
